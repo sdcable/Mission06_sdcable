@@ -26,6 +26,11 @@ namespace Mission06_sdcable.Controllers
             return View();
         }
 
+        public IActionResult Podcasts()
+        {
+            return View();
+        }
+
         [HttpGet]
         public IActionResult AddMovie()
         {
