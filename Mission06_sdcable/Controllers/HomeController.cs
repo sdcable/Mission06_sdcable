@@ -15,7 +15,7 @@ namespace Mission06_sdcable.Controllers
         private MovieContext _movieContext { get; set; }
         //Constructor
 
-        public HomeController(ILogger<HomeController> logger, MovieContext data)
+        public HomeController(ILogger<HomeController> logger, MovieContext data) //Bring in the _movieContext.
         {
             _logger = logger;
             _movieContext = data;
@@ -33,7 +33,7 @@ namespace Mission06_sdcable.Controllers
         }
 
         [HttpPost]
-        public IActionResult AddMovie(MovieModel ar)
+        public IActionResult AddMovie(MovieModel ar) //HTTP post to save data when a post is done.
         {
             _movieContext.Add(ar);
             _movieContext.SaveChanges();

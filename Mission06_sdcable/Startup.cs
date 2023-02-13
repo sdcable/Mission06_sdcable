@@ -29,7 +29,7 @@ namespace Mission06_sdcable
 
             services.AddDbContext<MovieContext>(options =>
             {
-                options.UseSqlite(Configuration["ConnectionStrings:DataConnection"]);
+                options.UseSqlite(Configuration["ConnectionStrings:DataConnection"]); //Setting up connection strings to the startup
             });
         }
 
