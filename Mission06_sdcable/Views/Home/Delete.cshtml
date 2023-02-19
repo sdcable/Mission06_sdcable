@@ -6,11 +6,12 @@
 
 <h2>Are you sure you want to delete @Model.Title's Information?</h2>
 
+<!--Don't delete entry btn-->
 <form method="get">
     <button asp-controller="Home" asp-action="ViewMovies" class="btn-outline-primary" type="submit">No, Please don't delete it</button>
 </form>
 
-
+<!--Delete btn-->
 <form method="post" class="table" style="width: 50%">
     
     <br />

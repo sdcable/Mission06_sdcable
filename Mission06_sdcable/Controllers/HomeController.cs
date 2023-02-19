@@ -47,7 +47,7 @@ namespace Mission06_sdcable.Controllers
                 _movieContext.SaveChanges();
                 return View("Index");
             }
-            else
+            else //Stay in view if not a valid modelstate.
             {
                 ViewBag.Category = _movieContext.Categories.ToList();
                 return View();
@@ -58,7 +58,7 @@ namespace Mission06_sdcable.Controllers
 
 
         [HttpGet]
-        public IActionResult ViewMovies()
+        public IActionResult ViewMovies() 
         {
             ViewBag.Category = _movieContext.Categories.ToList();
             var x = _movieContext.responses
@@ -68,7 +68,7 @@ namespace Mission06_sdcable.Controllers
         }
 
         [HttpGet]
-        public IActionResult Delete(int movieid)
+        public IActionResult Delete(int movieid) //Return a "Are you sure" screen with the users info
         {
             //Retrieving movideid in the paramters of the delete button and finding where in the contextvariable responses that equals the correct movieid
             var SingleMovie = _movieContext.responses.Single(x => x.MovieId == movieid);  
@@ -77,7 +77,7 @@ namespace Mission06_sdcable.Controllers
         }
 
         [HttpPost]
-        public IActionResult Delete(MovieModel ar)
+        public IActionResult Delete(MovieModel ar) //Delete info if yes
         {
             //The argument passed is the id of the model that you watn to delete.
             _movieContext.responses.Remove(ar);
@@ -95,7 +95,7 @@ namespace Mission06_sdcable.Controllers
         }
 
         [HttpPost]
-        public IActionResult Edit(MovieModel ar)
+        public IActionResult Edit(MovieModel ar) //Update information in database for the movie.
         {
             _movieContext.Update(ar);
             _movieContext.SaveChanges();
