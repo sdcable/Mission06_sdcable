@@ -13,9 +13,6 @@ namespace Mission06_sdcable.Models
         public int MovieId { get; set; }
 
         [Required]
-        public string Category { get; set; }
-
-        [Required]
         public string Title { get; set; }
 
         [Required]
@@ -32,6 +29,12 @@ namespace Mission06_sdcable.Models
 
         [StringLength(25)]
         public string Notes { get; set; }
+
+        //Set up foreign key relationship
+        [Required(ErrorMessage = "The Category field is required")]
+        public int CategoryId { get; set; }
+        public CategoriesModel Category { get; set; }
+        
 
     }
 }

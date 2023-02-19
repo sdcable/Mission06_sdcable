@@ -15,15 +15,75 @@ namespace Mission06_sdcable.Migrations
             modelBuilder
                 .HasAnnotation("ProductVersion", "3.1.32");
 
+            modelBuilder.Entity("Mission06_sdcable.Models.CategoriesModel", b =>
+                {
+                    b.Property<int>("CategoryId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("Category")
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("CategoryId");
+
+                    b.ToTable("Categories");
+
+                    b.HasData(
+                        new
+                        {
+                            CategoryId = 1,
+                            Category = "Fantasy"
+                        },
+                        new
+                        {
+                            CategoryId = 2,
+                            Category = "Action/Adventure"
+                        },
+                        new
+                        {
+                            CategoryId = 3,
+                            Category = "Comedy"
+                        },
+                        new
+                        {
+                            CategoryId = 4,
+                            Category = "Drama"
+                        },
+                        new
+                        {
+                            CategoryId = 5,
+                            Category = "Family"
+                        },
+                        new
+                        {
+                            CategoryId = 6,
+                            Category = "Horror/Suspense"
+                        },
+                        new
+                        {
+                            CategoryId = 7,
+                            Category = "Miscellaneous"
+                        },
+                        new
+                        {
+                            CategoryId = 8,
+                            Category = "Television"
+                        },
+                        new
+                        {
+                            CategoryId = 9,
+                            Category = "VHS"
+                        });
+                });
+
             modelBuilder.Entity("Mission06_sdcable.Models.MovieModel", b =>
                 {
                     b.Property<int>("MovieId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
-                    b.Property<string>("Category")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
+                    b.Property<int>("CategoryId")
+                        .HasColumnType("INTEGER");
 
                     b.Property<string>("Director")
                         .IsRequired()
@@ -52,13 +112,15 @@ namespace Mission06_sdcable.Migrations
 
                     b.HasKey("MovieId");
 
+                    b.HasIndex("CategoryId");
+
                     b.ToTable("responses");
 
                     b.HasData(
                         new
                         {
                             MovieId = 1,
-                            Category = "Fantasy",
+                            CategoryId = 1,
                             Director = "Chris Columbus",
                             Edited = false,
                             LentTo = "",
@@ -70,7 +132,7 @@ namespace Mission06_sdcable.Migrations
                         new
                         {
                             MovieId = 2,
-                            Category = "Sci-Fi",
+                            CategoryId = 2,
                             Director = "George Lucas",
                             Edited = false,
                             LentTo = "",
@@ -82,7 +144,7 @@ namespace Mission06_sdcable.Migrations
                         new
                         {
                             MovieId = 3,
-                            Category = "Action",
+                            CategoryId = 5,
                             Director = "Chris McKay",
                             Edited = false,
                             LentTo = "",
@@ -91,6 +153,15 @@ namespace Mission06_sdcable.Migrations
                             Title = "The Lego Batman Movie",
                             Year = 2017
                         });
+                });
+
+            modelBuilder.Entity("Mission06_sdcable.Models.MovieModel", b =>
+                {
+                    b.HasOne("Mission06_sdcable.Models.CategoriesModel", "Category")
+                        .WithMany()
+                        .HasForeignKey("CategoryId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 #pragma warning restore 612, 618
         }
